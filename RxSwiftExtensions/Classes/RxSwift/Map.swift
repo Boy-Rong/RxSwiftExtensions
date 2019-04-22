@@ -20,8 +20,13 @@ public extension ObservableType {
     }
     
     /// map 成功后的值（过滤失败），并处理 Failure事件
-    func mapSuccess<T>(failure : ((Error) -> Void)? = nil) -> Observable<T> where Self.E == Swift.Result<T,Error> {
-        return self.do(failure: { failure?($0) }).map({ try? $0.get() }).filterNil()
+    func mapSuccess<T,E>(failure : ((Error) -> Void)? = nil) -> Observable<T> where Self.E == Swift.Result<T,E>, E : Error {
+        return `do`(onNext: { result in
+            switch result {
+            case .success: break
+            case let .failure(error): failure?(error)
+            }
+        }).map({ try $0.get() })
     }
     
 }

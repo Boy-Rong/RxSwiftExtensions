@@ -18,3 +18,9 @@ public extension ObservableType {
     
 }
 
+public extension ObservableType where E : Equatable {
+    /// 留下给定的值
+    func stay(_ values : Self.E...) -> Observable<Self.E> {
+        return filter({ values.contains($0) })
+    }
+}

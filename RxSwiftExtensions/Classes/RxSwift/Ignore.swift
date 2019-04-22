@@ -11,6 +11,7 @@ import RxSwift
 
 extension ObservableType where E: Equatable {
 
+    /// 忽略掉对应的值，与 filter 相反
 	public func ignore(_ valuesToIgnore: E ...) -> Observable<E> {
         return self.asObservable().filter { !valuesToIgnore.contains($0) }
     }
