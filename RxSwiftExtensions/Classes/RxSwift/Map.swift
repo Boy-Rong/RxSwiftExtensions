@@ -15,7 +15,7 @@ public extension ObservableType {
         return map({ _ in () })
     }
     
-    func mapTo<T>(_ value : T) -> Observable<T> {
+    func mapValue<T>(_ value : T) -> Observable<T> {
         return map({ _ in value })
     }
     
@@ -26,7 +26,8 @@ public extension ObservableType {
             case .success: break
             case let .failure(error): failure?(error)
             }
-        }).map({ try $0.get() })
+        })
+            .map({ try? $0.get() }).filterNil()
     }
     
 }
