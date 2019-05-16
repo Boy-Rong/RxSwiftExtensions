@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'RxSwiftExtensions_Example' do
-  pod 'RxSwiftExtensions', :path => '../'
+  pod 'RxSwiftExtensions.swift', :path => '../'
 
   target 'RxSwiftExtensions_Tests' do
     inherit! :search_paths
