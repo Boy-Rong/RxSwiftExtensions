@@ -11,9 +11,9 @@ import RxSwift
 
 // MARK: - do 副作用
 public extension ObservableType {
-    
-    func doNext(_ closure : @escaping (E) -> Void) -> Observable<E> {
-        return self.do(onNext: { value in closure(value) })
+ 
+    func `do`(onNext: @escaping () -> Void) -> Observable<E> {
+        return self.do(onNext: { _ in onNext()  })
     }
     
     /// 添加副作用（类型为Result<T>）
