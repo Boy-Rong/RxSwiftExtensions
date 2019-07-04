@@ -20,7 +20,7 @@ public extension ObservableType {
     }
     
     /// map 成功后的值
-    func mapSuccess<T>() -> Observable<T> where Self.Element == Result<T,Error> {
+    func mapSuccess<T,E>() -> Observable<T> where Self.Element == Result<T,E>, E : Error {
         return map({ try? $0.get() }).filterNil()
     }
     

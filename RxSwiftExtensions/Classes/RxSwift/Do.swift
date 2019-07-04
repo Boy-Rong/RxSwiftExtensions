@@ -21,7 +21,7 @@ public extension ObservableType {
     }
     
     /// 给Success添加副作用
-    func `do`<T>(success: @escaping (T) -> Void) -> Observable<Element> where Self.Element == Result<T,Error> {
+    func doSuccess<T,E>(_ success: @escaping (T) -> Void) -> Observable<Element> where Self.Element == Result<T,E>, E : Error {
         return self.do(onNext: { result in
             switch result {
             case let .success(value): success(value)
@@ -31,7 +31,7 @@ public extension ObservableType {
     }
     
     /// 给Failure添加副作用
-    func `do`<T,E>(failure: @escaping (E) -> Void) -> Observable<Element> where Self.Element == Result<T,E>, E : Error {
+    func doFailure<T,E>(_ failure: @escaping (E) -> Void) -> Observable<Element> where Self.Element == Result<T,E>, E : Error {
         return self.do(onNext: { result in
             switch result {
             case .success: break
