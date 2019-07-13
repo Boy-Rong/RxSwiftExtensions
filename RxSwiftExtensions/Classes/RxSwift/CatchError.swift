@@ -8,16 +8,17 @@
 
 import RxSwift
 
-public extension ObservableConvertibleType {
+public extension ObservableType {
     
-    func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> E) -> Observable<E> {
-        return asObservable().catchError { _ in
+    func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> Element) -> Observable<E> {
+        return catchError { _ in
             return Observable.just(try closure())
         }
     }
     
-    func catchErrorJustComplete() -> Observable<E> {
-        return asObservable().catchError { _ in
+    /// 替换错误事件为 Complete
+    func catchErrorJustComplete() -> Observable<Element> {
+        return catchError { _ in
             Observable.empty()
         }
     }

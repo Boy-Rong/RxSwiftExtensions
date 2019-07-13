@@ -1,6 +1,6 @@
 PODS:
   - RxSwift (5.0.0)
-  - RxSwiftExtensions.swift (0.1.5):
+  - RxSwiftExtensions.swift (0.2.2):
     - RxSwift (~> 5.0)
 
 DEPENDENCIES:
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  RxSwiftExtensions.swift: 44857c926d6da9f0dd55e13ad58a51597f8f1dfe
+  RxSwiftExtensions.swift: 69a3acab011228fc5667a60325109ca9818d376f
 
 PODFILE CHECKSUM: c5c07f14041149246bf305344d63d8b50f644900
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.2
