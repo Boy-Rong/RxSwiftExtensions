@@ -28,7 +28,7 @@ extension Observable {
     }
     
     /// 创建异步事件流，产生Result<Element,Error>
-    public static func fromAsync(_ asyncRequest: @escaping (@escaping (Swift.Result<Element,Error>) -> Void) -> Void) -> Observable<Element> {
+    public static func fromAsyncResult(_ asyncRequest: @escaping (@escaping (Swift.Result<Element,Error>) -> Void) -> Void) -> Observable<Element> {
         return Observable.create({ (o) -> Disposable in
             asyncRequest({ (result) in
                 switch result {
