@@ -13,16 +13,18 @@ import RxSwift
 public extension ObservableType {
     
     /// 订阅值事件
-    func subscribeNext(_ next : @escaping (Self.E) -> Void) -> Disposable {
+    @discardableResult
+    func subscribeNext(_ next : @escaping (Self.Element) -> Void) -> Disposable {
         return subscribe(onNext: { (value) in
             next(value)
         })
     }
     
     /// 订阅 Result   序列类型为 Observable<Result<T>> 才能调用
+    @discardableResult
     func subscribe<T>(success : @escaping (T) -> Void,
                       failure : @escaping (Error) -> Void) -> Disposable
-        where Self.E == Result<T,Error> {
+        where Self.Element == Result<T,Error> {
             
             return subscribe(onNext: { (result) in
                 switch result {

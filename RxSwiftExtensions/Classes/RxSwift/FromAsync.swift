@@ -15,6 +15,7 @@ extension Observable {
      Transforms an async function that returns data through a completionHandler in a function that returns data through an Observable
      - The returned function will thake the same arguments than asyncRequest, minus the last one
      */
+    /// 创建异步事件流，不会产生错误
     public static func fromAsync(_ asyncRequest: @escaping (@escaping (Element) -> Void) -> Void) -> Observable<Element> {
         return Observable.create({ (o) -> Disposable in
             asyncRequest({ (result) in
@@ -22,6 +23,23 @@ extension Observable {
                 o.onCompleted()
             })
 
+            return Disposables.create()
+        })
+    }
+    
+    /// 创建异步事件流，产生Result<Element,Error>
+    public static func fromAsync(_ asyncRequest: @escaping (@escaping (Swift.Result<Element,Error>) -> Void) -> Void) -> Observable<Element> {
+        return Observable.create({ (o) -> Disposable in
+            asyncRequest({ (result) in
+                switch result {
+                case .success(let value):
+                    o.onNext(value)
+                    o.onCompleted()
+                case .failure(let error):
+                    o.onError(error)
+                }
+            })
+            
             return Disposables.create()
         })
     }

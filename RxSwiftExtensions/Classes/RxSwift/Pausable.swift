@@ -22,7 +22,7 @@ extension ObservableType {
 	*/
 
     /// 根据P 决定是否暂停发送值（实质是过滤P为true的值）
-    public func pausable<P: ObservableType> (_ pauser: P) -> Observable<E> where P.E == Bool {
+    public func pausable<P: ObservableType> (_ pauser: P) -> Observable<Element> where P.Element == Bool {
 		return withLatestFrom(pauser) { element, paused in
 				(element, paused)
 			}

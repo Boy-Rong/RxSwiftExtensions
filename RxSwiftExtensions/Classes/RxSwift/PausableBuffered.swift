@@ -27,10 +27,10 @@ extension ObservableType {
      - returns: The observable sequence which is paused and resumed based upon the pauser observable sequence.
      */
     /// 根据P 觉得 暂停并缓存发送的数据，limit = nil 缓存无限大
-    public func pausableBuffered<P: ObservableType> (_ pauser: P, limit: Int? = 1, flushOnCompleted: Bool = true, flushOnError: Bool = true) -> Observable<E> where P.E == Bool {
+    public func pausableBuffered<P: ObservableType> (_ pauser: P, limit: Int? = 1, flushOnCompleted: Bool = true, flushOnError: Bool = true) -> Observable<Element> where P.Element == Bool {
 
-        return Observable<E>.create { observer in
-            var buffer: [E] = []
+        return Observable<Element>.create { observer in
+            var buffer: [Element] = []
             if let limit = limit {
                 buffer.reserveCapacity(limit)
             }
