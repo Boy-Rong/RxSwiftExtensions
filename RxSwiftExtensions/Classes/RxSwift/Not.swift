@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-extension ObservableType where E == Bool {
+extension ObservableType where Element == Bool {
 
     /// 取反
     public func not() -> Observable<Bool> {

@@ -10,7 +10,7 @@ import RxSwift
 
 public extension ObservableType {
     
-    func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> Element) -> Observable<E> {
+    func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> Element) -> Observable<Element> {
         return catchError { _ in
             return Observable.just(try closure())
         }

@@ -65,7 +65,7 @@ extension ObservableType {
      - parameter on: Function to invoke on `weak` for each event in the observable sequence.
      - returns: Subscription object used to unsubscribe from the observable sequence.
      */
-    public func subscribe<A: AnyObject>(weak obj: A, _ on: @escaping (A) -> (RxSwift.Event<Self.E>) -> Void) -> Disposable {
+    public func subscribe<A: AnyObject>(weak obj: A, _ on: @escaping (A) -> (RxSwift.Event<Self.Element>) -> Void) -> Disposable {
         return self.subscribe(weakify(obj, method: on))
     }
     
@@ -82,7 +82,7 @@ extension ObservableType {
      */
     public func subscribe<A: AnyObject>(
         weak obj: A,
-        onNext: ((A) -> (Self.E) -> Void)? = nil,
+        onNext: ((A) -> (Self.Element) -> Void)? = nil,
         onError: ((A) -> (Error) -> Void)? = nil,
         onCompleted: ((A) -> () -> Void)? = nil,
         onDisposed: ((A) -> () -> Void)? = nil)
@@ -95,7 +95,7 @@ extension ObservableType {
                 disposable = Disposables.create()
             }
             
-            let observer = AnyObserver { [weak obj] (e: RxSwift.Event<Self.E>) in
+            let observer = AnyObserver { [weak obj] (e: RxSwift.Event<Self.Element>) in
                 guard let obj = obj else { return }
                 switch e {
                 case .next(let value):
@@ -119,7 +119,7 @@ extension ObservableType {
      - parameter onNext: Function to invoke on `weak` for each element in the observable sequence.
      - returns: Subscription object used to unsubscribe from the observable sequence.
      */
-    public func subscribeNext<A: AnyObject>(weak obj: A, _ onNext: @escaping (A) -> (Self.E) -> Void) -> Disposable {
+    public func subscribeNext<A: AnyObject>(weak obj: A, _ onNext: @escaping (A) -> (Self.Element) -> Void) -> Disposable {
         return self.subscribe(onNext: weakify(obj, method: onNext))
     }
     
