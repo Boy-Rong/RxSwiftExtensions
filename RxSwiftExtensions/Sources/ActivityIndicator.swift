@@ -8,11 +8,11 @@
 
 import RxSwift
 
-private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
-    private let _source: Observable<E>
+private struct ActivityToken<Element> : ObservableConvertibleType, Disposable {
+    private let _source: Observable<Element>
     private let _dispose: Cancelable
 
-    init(source: Observable<E>, disposeAction: @escaping () -> Void) {
+    init(source: Observable<Element>, disposeAction: @escaping () -> Void) {
         _source = source
         _dispose = Disposables.create(with: disposeAction)
     }
@@ -21,7 +21,7 @@ private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
         _dispose.dispose()
     }
 
-    func asObservable() -> Observable<E> {
+    func asObservable() -> Observable<Element> {
         return _source
     }
 }

@@ -17,12 +17,12 @@ RxSwiftExtensions is available through [CocoaPods](https://cocoapods.org). To in
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'RxSwiftExtensions'
+pod 'RxSwiftExtensions.swift'
 ```
 
 ## Author
 
-495929699g@gmail.com, 495929699g@gmail.com
+荣少, rongheng.rh@gmail.com
 
 ## License
 

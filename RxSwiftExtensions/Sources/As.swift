@@ -11,14 +11,14 @@ extension ObservableType {
     /// asDriver
     public func asDriverObservable(onErrorJustReturn: Element) -> Observable<Element> {
         return observeOnMainScheduler()
-            .catchErrorJustReturn(onErrorJustReturn)
+            .catchAndReturn(onErrorJustReturn)
             .shareOnce()
     }
     
     /// asDriver
     public func asDriverObservable(onErrorObservableWith: Observable<Element>) -> Observable<Element> {
         return observeOnMainScheduler()
-            .catchError({ _ in onErrorObservableWith })
+            .catch({ onErrorObservableWith })
             .shareOnce()
     }
 }
@@ -27,14 +27,14 @@ extension ObservableType {
     /// asSignal
     public func asSignalObservable(onErrorJustReturn: Element) -> Observable<Element> {
         return observeOnMainScheduler()
-            .catchErrorJustReturn(onErrorJustReturn)
+            .catchAndReturn(onErrorJustReturn)
             .share()
     }
     
     /// asSignal
     public func asSignalObservable(onErrorObservableWith: Observable<Element>) -> Observable<Element> {
         return observeOnMainScheduler()
-            .catchError({ _ in  onErrorObservableWith  })
+            .catch({ onErrorObservableWith })
             .share()
     }
 }

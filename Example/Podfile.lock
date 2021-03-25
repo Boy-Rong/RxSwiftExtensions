@@ -1,13 +1,13 @@
 PODS:
-  - RxSwift (5.0.0)
-  - RxSwiftExtensions.swift (0.2.2):
-    - RxSwift (~> 5.0)
+  - RxSwift (6.1.0)
+  - RxSwiftExtensions.swift (0.2.6):
+    - RxSwift (~> 6.0)
 
 DEPENDENCIES:
   - RxSwiftExtensions.swift (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - RxSwift
 
 EXTERNAL SOURCES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  RxSwiftExtensions.swift: 69a3acab011228fc5667a60325109ca9818d376f
+  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
+  RxSwiftExtensions.swift: c419582e9e1bdf2534e8aab3a65bc685e4d97875
 
 PODFILE CHECKSUM: c5c07f14041149246bf305344d63d8b50f644900
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.10.1

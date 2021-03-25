@@ -11,15 +11,11 @@ import RxSwift
 public extension ObservableType {
     
     func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> Element) -> Observable<Element> {
-        return catchError { _ in
-            return Observable.just(try closure())
-        }
+        return self.catch { _ in .just(try closure()) }
     }
     
     /// 替换错误事件为 Complete
     func catchErrorJustComplete() -> Observable<Element> {
-        return catchError { _ in
-            Observable.empty()
-        }
+        return self.catch { _ in .empty() }
     }
 }
