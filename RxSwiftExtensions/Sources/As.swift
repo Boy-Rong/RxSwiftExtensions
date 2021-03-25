@@ -18,7 +18,7 @@ extension ObservableType {
     /// asDriver
     public func asDriverObservable(onErrorObservableWith: Observable<Element>) -> Observable<Element> {
         return observeOnMainScheduler()
-            .catch({ onErrorObservableWith })
+            .catch({ _ in onErrorObservableWith })
             .shareOnce()
     }
 }
@@ -34,7 +34,7 @@ extension ObservableType {
     /// asSignal
     public func asSignalObservable(onErrorObservableWith: Observable<Element>) -> Observable<Element> {
         return observeOnMainScheduler()
-            .catch({ onErrorObservableWith })
+            .catch({ _ in onErrorObservableWith })
             .share()
     }
 }
